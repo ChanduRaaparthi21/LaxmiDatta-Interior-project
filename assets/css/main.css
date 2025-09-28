@@ -2128,5 +2128,172 @@ button:focus:not(:focus-visible){
 }
 
 
+/* 🌿 Floating WhatsApp Chat Button + Popup */
 
+.whatsapp-chat {
+  position: fixed;
+  bottom: 100px;
+  right: 45px;
+  z-index: 99999;
+  font-family: "Poppins", sans-serif;
+}
 
+/* Floating Button */
+.whatsapp-icon {
+  width: 55px;
+  height: 55px;
+  background-color: #25d366;
+  color: #fff;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 28px;
+  cursor: pointer;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+  animation: pulse 2s infinite;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.whatsapp-icon:hover {
+  transform: scale(1.1);
+  background-color: #1ebe5b;
+}
+
+/* Popup */
+.whatsapp-popup {
+  position: absolute;
+  bottom: 70px;
+  right: 0;
+  width: 270px;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  opacity: 0;
+  transform: translateY(20px) scale(0.95);
+  pointer-events: none;
+  transition: all 0.4s ease;
+}
+
+.whatsapp-popup.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  pointer-events: auto;
+  animation: popupBounce 0.5s ease;
+}
+
+/* Popup Header */
+.whatsapp-header {
+  background-color: #25d366;
+  color: white;
+  padding: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-weight: 600;
+  font-size: 15px;
+}
+
+.whatsapp-header i.fa-whatsapp {
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+.close-popup {
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* Popup Body */
+.whatsapp-body {
+  padding: 15px;
+  text-align: center;
+}
+
+.whatsapp-body p {
+  margin: 0 0 10px;
+  color: #333;
+  font-size: 14px;
+}
+
+.chat-btn {
+  display: inline-block;
+  background-color: #25d366;
+  color: white;
+  text-decoration: none;
+  padding: 8px 18px;
+  border-radius: 25px;
+  font-weight: 600;
+  font-size: 14px;
+  transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.chat-btn:hover {
+  background-color: #1ebe5b;
+  transform: scale(1.05);
+}
+
+/* Pulse Effect */
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.4); }
+  70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
+
+/* Popup Bounce Animation */
+@keyframes popupBounce {
+  0% { transform: translateY(-20px) scale(0.9); opacity: 0; }
+  60% { transform: translateY(10px) scale(1.05); opacity: 1; }
+  80% { transform: translateY(-5px) scale(0.98); }
+  100% { transform: translateY(0) scale(1); }
+}
+.whatsapp-body a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}       
+/*====================================
+    Sticky Scroll Top Button
+=======================================*/
+.sticky-scroll-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    background-color: var(--color-white);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+.sticky-scroll-top.show {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+.sticky-scroll-top:hover {
+    background-color: var(--color-primary);
+    transform: scale(1.1);
+}
+.sticky-scroll-top i {
+    color: var(--color-body);
+    font-size: 20px;
+    transition: color 0.3s ease;
+}
+.sticky-scroll-top:hover i {
+    color: var(--color-white);
+}
+/*====================================
+    Sticky Scroll Top Button End
+=======================================*/
+/* About Section 2 Start*/

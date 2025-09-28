@@ -6,7 +6,7 @@
                     <div class="col-md-3 col-12">
                         <div>
                             <div>
-                                <a href=""><img src="assets/img/LDI-removebg-preview.svg" alt="" style="height: 90px;"></a>
+                                <a href=""><img src="assets\img\new1 black.png" alt="" style="height: 150px;"></a>
                             </div>
                             <div class="footer-icon-wrapper">
                                 <ul class="footer-icon-wrapper-ul p-0">
@@ -72,4 +72,68 @@
                 </ul>
             </div>
         </div>
+
+<!-- WhatsApp Floating Chat -->
+<div class="whatsapp-chat" id="whatsapp-chat">
+  <div class="whatsapp-icon" id="whatsapp-toggle">
+    <i class="fa-brands fa-whatsapp"></i>
+  </div>
+
+  <div class="whatsapp-popup" id="whatsapp-popup">
+    <div class="whatsapp-header">
+      <i class="fa-brands fa-whatsapp"></i>
+      <span>Laxmidatta Interiors</span>
+      <i class="fa-solid fa-xmark close-popup" id="close-popup"></i>
+    </div>
+    <div class="whatsapp-body">
+      <p>Hi 👋<br>How can we help you today?</p>
+      <a href="https://wa.me/+919550855938?text=Hello%20Laxmidatta%20Interiors!%20I%20would%20like%20to%20know%20more%20about%20your%20services."
+         target="_blank" class="chat-btn">Chat Now</a>
+    </div>
+  </div>
+</div>
+
+
 </footer>
+<audio id="popup-sound" src="/assets/audio/sharp-pop-328170.mp3" preload="auto"></audio>
+
+<script>
+  const whatsappToggle = document.getElementById("whatsapp-toggle");
+  const whatsappPopup = document.getElementById("whatsapp-popup");
+  const closePopup = document.getElementById("close-popup");
+  const popupSound = document.getElementById("popup-sound");
+
+  // Toggle popup when button clicked
+  whatsappToggle.addEventListener("click", () => {
+    whatsappPopup.classList.toggle("show");
+  });
+
+  // Close popup when X clicked
+  closePopup.addEventListener("click", () => {
+    whatsappPopup.classList.remove("show");
+  });
+
+  // Close when clicked outside
+  document.addEventListener("click", (e) => {
+    if (!whatsappPopup.contains(e.target) && !whatsappToggle.contains(e.target)) {
+      whatsappPopup.classList.remove("show");
+    }
+  });
+
+  // 👋 Auto open popup after few seconds, only once per session
+  window.addEventListener("load", () => {
+    if (!sessionStorage.getItem("whatsappPopupShown")) {
+      setTimeout(() => {
+        whatsappPopup.classList.add("show");
+
+        // Try to play sound (may require user interaction in some browsers)
+        popupSound.play().catch(() => {
+          console.log("Autoplay blocked, sound requires user interaction");
+        });
+
+        // Mark popup as shown for this session
+        sessionStorage.setItem("whatsappPopupShown", "true");
+      }, 5000); // 5 seconds delay
+    }
+  });
+</script>
