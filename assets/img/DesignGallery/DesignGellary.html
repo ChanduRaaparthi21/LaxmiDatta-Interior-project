@@ -137,16 +137,6 @@
         </div>
       </section>
       <br />
-
-      <h2 style="text-align:center; margin-bottom:20px;">Design Gallery</h2>
-
-<div style="text-align:center; margin-bottom:20px;">
-  <input type="file" id="imageUpload" accept="image/*" multiple>
-  <button id="uploadBtn" style="background:#222;color:#fff;padding:10px 20px;border:none;border-radius:6px;cursor:pointer;">
-    📤 Upload Images
-  </button>
-</div>
-
       <!-- Projects Start -->
       <section class="project-showcase">
         <div class="container">
@@ -409,62 +399,6 @@
   function closeModal() {
     document.getElementById("lightboxModal").style.display = "none";
   }
-
-
-const uploadInput = document.getElementById('imageUpload');
-const uploadBtn = document.getElementById('uploadBtn');
-const galleryGrid = document.querySelector('.gallery-grid');
-const STORAGE_KEY = "galleryImages";
-
-// Optional: use your ImgBB API key
-const imgbbAPI = "https://api.imgbb.com/1/upload?key=33c3ff0ab56d5a3a6d1906331f232b20";
-
-// 🔹 Load saved images from LocalStorage on page load
-window.addEventListener('DOMContentLoaded', () => {
-  const saved = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-  saved.forEach(url => addImageToGallery(url));
-});
-
-// 🔹 Upload images and save
-uploadBtn.addEventListener('click', async () => {
-  const files = uploadInput.files;
-  if (!files.length) return alert('Please select at least one image.');
-
-  const saved = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-
-  for (const file of files) {
-    const formData = new FormData();
-    formData.append('image', file);
-
-    try {
-      const response = await fetch(imgbbAPI, { method: 'POST', body: formData });
-      const data = await response.json();
-
-      if (data.success) {
-        const imgURL = data.data.url;
-        saved.push(imgURL);
-        addImageToGallery(imgURL);
-      } else {
-        console.error("Upload failed:", data);
-      }
-    } catch (err) {
-      console.error("Error uploading:", err);
-    }
-  }
-
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(saved));
-  uploadInput.value = "";
-});
-
-// 🔹 Helper function: add image to gallery
-function addImageToGallery(url) {
-  const img = document.createElement('img');
-  img.src = url;
-  img.alt = "Uploaded Image";
-  img.onclick = () => openModal(img);
-  galleryGrid.prepend(img);
-}
-
 </script>
 
 
