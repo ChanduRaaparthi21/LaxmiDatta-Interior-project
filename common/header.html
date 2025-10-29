@@ -2,7 +2,7 @@
     <!-------Navbar Start------>
     <nav class="navbar navbar-expand-lg py-4 nav-white-bg">
         <div class="container">
-            <a class="navbar-brand" href="/index.html"><img src="/assets/img/new1 black.png" alt="" style="height: 70px;" /></a>
+            <a class="navbar-brand" href="/index.html"><img src="/assets/img/whiteLogo.png" alt="" style="height: 70px;" /></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
                 aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -52,4 +52,72 @@
         </div>
     </nav>
     <!-------Navbar End------>
+
+    
 </header>
+<body>
+<script>
+let lastScrollTop = 0;
+const navbar = document.querySelector('.navbar');
+const navbarCollapse = document.querySelector('.navbar-collapse');
+
+window.addEventListener('scroll', function() {
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  const isMobile = window.innerWidth <= 768;
+  const isMenuOpen = navbarCollapse.classList.contains('show');
+
+  // 🔹 Desktop behavior
+  if (!isMobile) {
+    if (scrollTop === 0) {
+      // Show only when at top
+      navbar.style.top = '0';
+    } else if (scrollTop > lastScrollTop) {
+      // Hide when scrolling down
+      navbar.style.top = '-200px';
+    } else {
+      // Keep hidden when scrolling up (not at top)
+      if (scrollTop > 0) {
+        navbar.style.top = '-200px';
+      }
+    }
+
+    // Background toggle for desktop
+    if (scrollTop > 100) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+
+    lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+    return;
+  }
+
+  // 🔹 Mobile behavior
+  if (scrollTop > lastScrollTop && scrollTop > 100 && !isMenuOpen) {
+    // hide on scroll down
+    navbar.style.top = '-200px';
+  } else {
+    // show on scroll up
+    navbar.style.top = '0';
+  }
+
+  // background toggle for mobile
+  if (scrollTop > 100) {
+    navbar.classList.add('scrolled');
+  } else {
+    navbar.classList.remove('scrolled');
+  }
+
+  lastScrollTop = scrollTop <= 0 ? 0 : scrollTop;
+});
+
+// 🔹 Always show navbar when hamburger is opened
+document.querySelector('.navbar-toggler').addEventListener('click', function() {
+  navbar.style.top = '0';
+});
+</script>
+
+
+
+
+</body>

@@ -231,6 +231,8 @@ li a:hover {
 .index-nav-a:hover{
     color: var(--color-primary);
 }
+
+
 /*NavBar End*/
 
 /*Header start*/
@@ -255,6 +257,57 @@ li a:hover {
     background-color: #fff;
     color: var(--color-primary);
 }
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  transition: top 0.4s ease-in-out;
+}
+/* ============================== */
+
+
+/* Navbar transparent style */
+/* 🔹 Navbar default — transparent with white text */
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: transparent;
+  z-index: 9999;
+  transition: top 0.4s ease-in-out, background-color 0.4s ease-in-out;
+  border: none;
+}
+
+/* 🔹 Transparent state — white text */
+.navbar .nav-d-t {
+  color: #fff !important;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar .nav-d-t:hover {
+  color: var(--color-primary) !important;
+}
+
+/* 🔹 Scrolled state — white background, dark text */
+.navbar.scrolled {
+  background-color: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar.scrolled .nav-d-t {
+  color: #000 !important;
+}
+
+.navbar.scrolled .nav-d-t:hover {
+  color: var(--color-primary) !important;
+}
+
+
+
+
 /* Section 1 satrt */
 /*Banner section start*/
 .sec-1-height {
@@ -2297,3 +2350,153 @@ button:focus:not(:focus-visible){
     Sticky Scroll Top Button End
 =======================================*/
 /* About Section 2 Start*/
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: transparent;
+  z-index: 9999;
+  transition: top 0.4s ease-in-out, background-color 0.4s ease-in-out;
+  border: none;
+}
+
+/* 🔹 Transparent state — white text */
+.navbar .index-nav-a {
+  color: #fff !important;
+  transition: color 0.3s ease-in-out;
+}
+
+.navbar .index-nav-a:hover {
+  color: var(--color-primary) !important;
+}
+
+/* 🔹 Scrolled state — white background */
+.navbar.scrolled {
+  background-color: rgba(255, 255, 255, 0.97);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar.scrolled .index-nav-a {
+  color: #000 !important; /* dark text after scroll */
+}
+
+.navbar.scrolled .index-nav-a:hover {
+  color: var(--color-primary) !important;
+}
+
+/* 🔹 Logo transition */
+.navbar-brand img {
+  transition: filter 0.3s ease-in-out, height 0.3s ease-in-out;
+  height: 70px;
+}
+
+.navbar.scrolled .navbar-brand img {
+  filter: invert(1); /* white logo → dark */
+  height: 55px;
+}
+
+/* 🔹 Hamburger button — white by default */
+.navbar-toggler {
+  border: none;
+  outline: none;
+  box-shadow: none;
+}
+
+.navbar-toggler-icon {
+  background-image: none;
+  position: relative;
+  width: 25px;
+  height: 2px;
+  background-color: #fff;
+  display: inline-block;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-toggler-icon::before,
+.navbar-toggler-icon::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  width: 25px;
+  height: 2px;
+  background-color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-toggler-icon::before {
+  top: -7px;
+}
+
+.navbar-toggler-icon::after {
+  top: 7px;
+}
+
+/* 🔹 Hamburger turns into “X” when open */
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon {
+  background-color: transparent;
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before {
+  transform: rotate(45deg);
+  top: 0;
+}
+
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
+  transform: rotate(-45deg);
+  top: 0;
+}
+
+/* 🔹 When navbar is scrolled, hamburger becomes dark */
+.navbar.scrolled .navbar-toggler-icon,
+.navbar.scrolled .navbar-toggler-icon::before,
+.navbar.scrolled .navbar-toggler-icon::after {
+  background-color: #000 !important;
+}
+
+/* 🔹 Responsive Fix for Mobile Devices */
+@media (max-width: 768px) {
+  .navbar {
+    padding: 10px 0 !important;
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  .navbar-brand img {
+    height: 55px !important;
+  }
+
+  .navbar-nav .nav-item {
+    text-align: center;
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 16px;
+    padding: 8px 0;
+    color: #fff !important;
+  }
+
+  /* 🔹 Mobile menu background */
+  .navbar-collapse {
+    background: rgba(20, 20, 20, 0.95) !important;
+    border-radius: 10px;
+    padding: 15px;
+  }
+}
+
+/* 🔹 When hamburger (mobile menu) is expanded */
+.navbar-collapse.show .nav-link {
+  color: #fff !important; /* white text inside expanded menu */
+}
+
+/* Optional: change background of the dropdown area */
+.navbar-collapse.show {
+  background: rgba(0, 0, 0, 0.95) !important;
+}
+
+/* Optional: hamburger icon stays white while open */
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon,
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::before,
+.navbar-toggler[aria-expanded="true"] .navbar-toggler-icon::after {
+  background-color: #fff !important;
+}
